@@ -34,4 +34,4 @@ function swap(str, a, b) {
   str[b] = temp;
 }
 
-console.log(permutations("aabb"));
+console.log(permutations("abac").length);
