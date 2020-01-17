@@ -45,15 +45,11 @@ function isEqual(arr, step, i) {
 }
 
 function isEqual2(arr, step, i) {
-  if (step === i) {
-    return true;
-  }
-  for (let k = step + 1; k < i; k++) {
-    if(arr[k] === arr[i]) {
+  for (let p = step; p < i; p++) {
+    if (arr[p] === arr[i]) {
       return true;
     }
   }
-
   return false;
 }
 
@@ -69,7 +65,7 @@ function permutations2(str, step = 0, result = []) {
   }
   // 本次调用针对是的str[step]到str[str.length-1]的子串
   for (let i = step; i < str.length; i++) {
-    if (!isEqual2(str, step, i)) {
+    if (!isEqual3(str, step, i)) {
       // 对换来得到除了首字母以外的剩余部分
       swap(str, step, i);
       // 针对剩下的部分
