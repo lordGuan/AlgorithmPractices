@@ -2,13 +2,14 @@ function removeZeros(arr) {
   for (let i = 0; i < arr.length; i++) {
     if (isZero(arr[i])) {
       // 找到一个零元素
-      for (let j = i; j < arr.length; j++) {
+      for (let j = i + 1; j < arr.length; j++) {
         // 找之后的第一个非零元素
         // a[j-1]移动到a[j],a[j-2]移动到a[j-3],...,a[i]移动到a[i+1]
         if (!isZero(arr[j])) {
           for (let k = 0; j - k > i; k++) {
             swap(arr, j - k - 1, j - k)
           }
+          break
         }
       }
     }
@@ -26,6 +27,6 @@ function swap(arr, i, j) {
   arr[j] = temp
 }
 
-let target = [1, '0', 1, '0', 1, 0, 1, 1]
+let target = [3, '0', 2, '0', 1, 0, -1, -2]
 
 console.log(removeZeros(target))
