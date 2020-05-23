@@ -1,0 +1,22 @@
+{
+  "name": "algorithmpractices",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lordGuan/AlgorithmPractices.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lordGuan/AlgorithmPractices/issues"
+  },
+  "homepage": "https://github.com/lordGuan/AlgorithmPractices#readme",
+  "dependencies": {
+    "chai": "^4.2.0"
+  }
+}
