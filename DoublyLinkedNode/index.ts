@@ -1,3 +1,6 @@
+/**
+ * 双连标节点数据结构，用$$typeof来标示数据类型
+ */
 interface DListNode<T> {
   $$typeof: Symbol;
   prev: DListNode<T> | null;
@@ -24,7 +27,7 @@ export class DList<T> implements IDList<T> {
   head: DListNode<T>;
   size: number;
   tail: DListNode<T>;
-
+  
   /**
    * 用已有数据进行初始化
    * @param initData
@@ -33,7 +36,7 @@ export class DList<T> implements IDList<T> {
     this.size = 0
     this.head = null
     this.tail = null
-
+    
     if (Array.isArray(initData)) {
       this.size = initData.reduce<number>((previousValue, currentValue) => {
         let newNode = createDListNode(currentValue)
@@ -46,7 +49,7 @@ export class DList<T> implements IDList<T> {
       this.tail = newNode
     }
   }
-
+  
   /**
    * 判断节点是否为双向链表有效节点
    * prev和next都必须是空，否则会产生拼接的情况
@@ -55,7 +58,7 @@ export class DList<T> implements IDList<T> {
   static isDListNode<T>(ele: any): ele is DListNode<T> {
     return (ele as DListNode<T>).$$typeof === Symbol.for("DListNode")
   }
-
+  
   /**
    * 添加元素
    * @param ele
@@ -65,34 +68,40 @@ export class DList<T> implements IDList<T> {
       // 原始数据
       ele = createDListNode(ele)
     }
-
+    
     if (this.size > 0) {
       this.insertAfter(this.tail, ele)
+      this.tail = ele
     } else {
       this.head = ele
       this.tail = ele
     }
-
+    
     return ++this.size
   }
-
+  
   /**
    * 获取指定位置元素
    * @param index
    */
-  get(index: number): DListNode<T> {
-    return this.head
+  get(index: number): T {
+    let ele = this.head
+    while (index > 0) {
+      ele = ele.next
+      index--
+    }
+    return ele.data
   }
-
+  
   /**
    * 在指定位置插入
    * @param index
    * @param ele
    */
   insert(index: number, ele: DListNode<T>) {
-
+  
   }
-
+  
   /**
    * 在指定元素后插入
    * @param prevEle
