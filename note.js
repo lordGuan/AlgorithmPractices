@@ -50,8 +50,23 @@ function solution(list) {
     return result
 }
 
+// console.log (device.encode ('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')) ;
+// console.log (device.encode ('bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb')) ;
+// console.log (device.encode ('!@#$%^&*()_+-')) ;
+// console.log ('abcdefghijklmnopqrstuvwxyz') ;
+// console.log ('abcdefghijklmnopqrstuvwxyz'.split ('').map (function (a) {
+//     return device.encode (a) ;
+// }).join ('')) ;
+// console.log ('abcdefghijklmnopqrstuvwxyz'.split ('').map (function (a) {
+//     return device.encode ('_'+a)[1] ;
+// }).join ('')) ;
+// console.log ('abcdefghijklmnopqrstuvwxyz'.split ('').map (function (a) {
+//     return device.encode ('__'+a)[2] ;
+// }).join ('')) ;
+
 //```
 //EFhZINtl3rgKW9
+// 'a'的0-65
 //bdhpF,82QsLirJejtNmzZKgnB3SwTyXG ?.6YIcflxVC5WE94UA1OoD70MkvRuPqHabdhpF,82QsLir
 //dhpF,82QsLirJejtNmzZKgnB3SwTyXG ?.6YIcflxVC5WE94UA1OoD70MkvRuPqHabdhp
 //!@#$%^&*()_+-
@@ -62,11 +77,118 @@ function solution(list) {
 //
 //```
 
+// ABCDEFGHIJKLMNOPQRSTUVWXYZ
+// 13579, acegikmoqsuwyACEGIK
+// OSW048?bfjnrvzDHLPTX159 cg
+// owEMU2.dltBJRZ7aiqyGOW4?fn
+// 'A'的0-65
+// 1OoD70MkvRuPqHabdhpF,82QsLirJejtNmzZKgnB3SwTyXG ?.6YIcflxVC5WE94UA 1OoD70MkvRuPq
+
+// 0-9
+// MoLyoAVqjM
+
+const map = {
+    "0": "M",
+    "1": "O",
+    "2": "Q",
+    "3": "S",
+    "4": "U",
+    "5": "W",
+    "6": "Y",
+    "7": "0",
+    "8": "2",
+    "9": "4",
+    " ": "?",
+    "!": "!",
+    "\"": "\"",
+    "#": "#",
+    "$": "$",
+    "%": "%",
+    "&": "&",
+    "'": "'",
+    "(": "(",
+    ")": ")",
+    "*": "*",
+    "+": "+",
+    ",": "8",
+    "-": "-",
+    ".": "6",
+    "/": "/",
+    ":": ":",
+    ";": ";",
+    "<": "<",
+    "=": "=",
+    ">": ">",
+    "?": ".",
+    "@": "@",
+    "A": "1",
+    "B": "3",
+    "C": "5",
+    "D": "7",
+    "E": "9",
+    "F": ",",
+    "G": " ",
+    "H": "a",
+    "I": "c",
+    "J": "e",
+    "K": "g",
+    "L": "i",
+    "M": "k",
+    "N": "m",
+    "O": "o",
+    "P": "q",
+    "Q": "s",
+    "R": "u",
+    "S": "w",
+    "T": "y",
+    "U": "A",
+    "V": "C",
+    "W": "E",
+    "X": "G",
+    "Y": "I",
+    "Z": "K",
+    "[": "[",
+    "\\": "\\",
+    "]": "]",
+    "^": "^",
+    "_": "_",
+    "`": "`",
+    "a": "b",
+    "b": "d",
+    "c": "f",
+    "d": "h",
+    "e": "j",
+    "f": "l",
+    "g": "n",
+    "h": "p",
+    "i": "r",
+    "j": "t",
+    "k": "v",
+    "l": "x",
+    "m": "z",
+    "n": "B",
+    "o": "D",
+    "p": "F",
+    "q": "H",
+    "r": "J",
+    "s": "L",
+    "t": "N",
+    "u": "P",
+    "v": "R",
+    "w": "T",
+    "x": "V",
+    "y": "X",
+    "z": "Z",
+    "{": "{",
+    "|": "|",
+    "}": "}",
+    "~": "~"
+}
 
 
-function A(c,i) {
+function A(c, i) {
     let offset = c.charCodeAt(0) - 97
-    let k = (i+offset) % 66
+    let k = (i + offset) % 66
 
     return 'bdhpF,82QsLirJejtNmzZKgnB3SwTyXG ?.6YIcflxVC5WE94UA1OoD70MkvRuPqHa'[k]
 }
@@ -80,16 +202,16 @@ function _A(c, i) {
 
 
 function encode(str) {
-    return str.split('').map((c,i)=>A(c,i)).join('')
+    return str.split('').map((c, i) => A(c, i)).join('')
 }
 
 function decode(str) {
-    return str.split('').map((c,i)=>_A(c,i)).join('')
+    return str.split('').map((c, i) => _A(c, i)).join('')
 }
 
 const decodeA = encode('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
 console.log(decodeA)
-console.log( decodeA === 'bdhpF,82QsLirJejtNmzZKgnB3SwTyXG ?.6YIcflxVC5WE94UA1OoD70MkvRuPqHabdhpF,82QsLir')
+console.log(decodeA === 'bdhpF,82QsLirJejtNmzZKgnB3SwTyXG ?.6YIcflxVC5WE94UA1OoD70MkvRuPqHabdhpF,82QsLir')
 
 const decodeB = encode('bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb')
 console.log(decodeB)
@@ -101,3 +223,16 @@ console.log(temp)
 
 
 // https://www.codewars.com/kata/52cf02cd825aef67070008fa/train/javascript
+
+/**
+ * 编码
+ * @param code{number} ASCII码
+ * @param index{number} 出现位置
+ * @constructor
+ */
+function F(code, index) {
+    index = index % 66
+    return code + (Math.pow(2, index + 1) - 1)
+}
+
+// F(x, i) === F(x - 1, i - 1)
