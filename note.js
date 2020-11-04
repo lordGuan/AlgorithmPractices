@@ -185,7 +185,7 @@ const map = {
     "~": "~"
 }
 
-
+// a-z可以
 function A(c, i) {
     let offset = c.charCodeAt(0) - 97
     let k = (i + offset) % 66
@@ -236,3 +236,33 @@ function F(code, index) {
 }
 
 // F(x, i) === F(x - 1, i - 1)
+
+// bdfhjlnprtvxzBDFHJLNPRTVXZ
+
+// A0-A65
+// 1OoD70MkvRuPqHabdhpF,82QsLirJejtNmzZKgnB3SwTyXG ?.6YIcflxVC5WE94UA
+// a0-a65
+//                bdhpF,82QsLirJejtNmzZKgnB3SwTyXG ?.6YIcflxVC5WE94UA1OoD70MkvRuPqHa
+//                                         3SwTyXG ?.6YIcflxVC5WE94UA1OoD70MkvRuPqHabdhpF,82QsLirJejtNmzZKgnB
+//                                           dhpF,82QsLirJejtNmzZKgnB3SwTyXG ?.6YIcflxVC5WE94UA1OoD70MkvRuPqHab
+// .6YIcflxVC5WE94UA1OoD70MkvRuPqHabdhpF,82QsLirJejtNmzZKgnB3SwTyXG ?
+
+function _d(c, index) {
+    // 基准
+    let code = '1OoD70MkvRuPqHabdhpF,82QsLirJejtNmzZKgnB3SwTyXG ?.6YIcflxVC5WE94UA'
+
+    let i = code.indexOf(c)
+
+    if(i < 0) {
+        return c
+    }
+
+    let _i = i - (1 + index)
+
+    if (_i < 0) _i = 66 + _i
+
+    return code[_i]
+}
+
+// 1OoD70MkvRuPqHabdhpF,82QsLirJejtNmzZKgnB3SwTyXG ?.6YIcflxVC5W
+// ?.6YIcflxVC5WE94UA1OoD70MkvRuPqHabdhpF,82QsLirJejtNmzZKgnB3SwTyXG
