@@ -1,6 +1,8 @@
+let name
+
 class Thing {
-    constructor(name) {
-        this.name = name
+    constructor(inputName) {
+        this.name = inputName
         const proxy = new Proxy(this, {
             get(target, property) {
                 property = String(property)
@@ -51,15 +53,21 @@ class Thing {
                                     return child
                                 case 'can':
                                     let root = Thing.root
-                                    Thing.root = nu
-                                    return function speak(a, b) {
-                                        if (typeof a === 'string') {
-
+                                    Thing.root = null
+                                    name = root.name
+                                    return function speak(cache, fn) {
+                                        let resultFn
+                                        if (typeof cache === 'function') {
+                                            resultFn = cache
+                                        } else if (typeof cache === 'string') {
+                                            root[cache] = []
+                                            resultFn = function (arg) {
+                                                let result = fn(arg)
+                                                root[cache].push(result)
+                                                return result
+                                            }
                                         }
-
-                                        if (typeof a === 'function') {
-
-                                        }
+                                        root[property] = resultFn
                                     }
                                 default:
                                     if (Thing.root) {
